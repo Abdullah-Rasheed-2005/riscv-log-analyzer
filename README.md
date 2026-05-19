@@ -1,153 +1,25 @@
 # riscv-log-analyzer
 
-A shell-based tool that processes RISC-V simulation log files, extracts test
-results, and generates human-readable or CSV summary reports.
+MEDS Module 1 Grand Assignment
+Student: Abdullah Rasheed
 
-Built as the **MEDS Module 1 Capstone** project — demonstrating Linux commands,
-shell scripting, Git workflows, and Makefile automation.
+## What it does
+Parses RISC-V simulation log files using bash scripts.
+Counts PASS, FAIL, SKIP results and shows timing stats.
 
----
-
-## Table of Contents
-
-- [Description](#description)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Usage](#usage)
-- [Sample Output](#sample-output)
-- [Project Structure](#project-structure)
-
----
-
-## Description
-
-`riscv-log-analyzer` reads simulation log files produced by RISC-V test
-environments. It counts PASS / FAIL / SKIP results, calculates the pass rate,
-lists failing test names, and reports timing statistics (min / max / average
-execution time per test).
-
----
-
-## Installation
-
-No installation required. Clone the repository and make the scripts executable:
-
-```bash
-git clone <your-repo-url>
-cd riscv-log-analyzer
+## How to run
 chmod +x scripts/*.sh
-```
-
-Verify all required tools are present:
-
-```bash
 make setup
-```
-
----
-
-## Quick Start
-
-```bash
-# Analyze a single log file (text output to terminal)
 bash scripts/analyze.sh test_data/sample_sim.log
-
-# Run all tests and generate a report
 make test
 make report
-```
 
----
+## Scripts
+- analyze.sh   — reads log file, counts results, shows report
+- setup_env.sh — checks if bash/grep/awk/git are installed
+- generate_report.sh — runs analyzer on all logs in test_data/
 
-## Usage
-
-```
-scripts/analyze.sh <logfile> [OPTIONS]
-
-Arguments:
-  <logfile>              Path to the simulation log file (required)
-
-Options:
-  --format [text|csv]    Output format (default: text)
-  --output <path>        Write output to file instead of stdout
-  --verbose              Show extra processing details
-  --help                 Show help message and exit
-```
-
-### Makefile Targets
-
-| Target       | Description                                           |
-|--------------|-------------------------------------------------------|
-| `make all`   | Run analyzer on all test log files (stdout)           |
-| `make test`  | Run automated test suite (verifies exit codes)        |
-| `make report`| Generate combined report in `output/`                 |
-| `make clean` | Remove all generated output files                     |
-| `make setup` | Check required tools and project structure            |
-| `make help`  | Print all available targets                           |
-
----
-
-## Sample Output
-
-```
-=== RISC-V Simulation Log Analysis ===
-Log file: test_data/sample_fail.log
-Analysis date: 2026-05-05 14:30:00
-
- --- Results Summary ---
-Total tests: 25
-Passed:      22 (88.0%)
-Failed:       2  (8.0%)
-Skipped:      1  (4.0%)
-
- --- Failed Tests ---
-  1. rv32i-sll
-  2. rv32i-beq
-
- --- Timing Statistics ---
-Min time:  0.42s (rv32i-nop)
-Max time:  2.31s (rv32i-mul)
-Avg time:  0.87s
-
- --- Verdict: FAIL ---
-Exit code: 1
-```
-
----
-
-## Project Structure
-
-```
-riscv-log-analyzer/
-├── README.md
-├── Makefile
-├── .gitignore
-├── scripts/
-│   ├── analyze.sh          # Main analysis script
-│   ├── setup_env.sh        # Environment setup & tool checker
-│   └── generate_report.sh  # Batch report generator
-├── test_data/
-│   ├── sample_sim.log      # Mixed pass/fail/skip log
-│   ├── sample_pass.log     # All tests passing
-│   └── sample_fail.log     # Multiple failures
-├── output/                 # Generated reports (gitignored)
-└── docs/
-    └── USAGE.md            # Detailed command reference
-```
-
----
-
-## Exit Codes
-
-| Code | Meaning                              |
-|------|--------------------------------------|
-| `0`  | All tests in the log passed          |
-| `1`  | One or more tests failed             |
-| `2`  | Usage error or file not found        |
-
----
-
-## Author
-
-MEDS Lab — Module 1 Capstone Project
-Maintained by: Abdullah Rasheed | MEDS Lab Team
+## Git workflow
+- 4 feature branches merged into main
+- 13 commits with meaningful messages
+- 1 merge conflict manually resolved in nano
