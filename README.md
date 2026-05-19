@@ -150,4 +150,4 @@ riscv-log-analyzer/
 ## Author
 
 MEDS Lab — Module 1 Capstone Project
-Maintained by: MEDS Lab Team
+Maintained by: Abdullah Rasheed | MEDS Lab Team
