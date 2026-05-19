@@ -1,0 +1,47 @@
+# =============================================================================
+# .gitignore — riscv-log-analyzer
+# =============================================================================
+
+# ── Generated output (reports, CSVs) ─────────────────────────────────────────
+output/
+
+# ── OS-generated files ────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Editor / IDE files ────────────────────────────────────────────────────────
+# VS Code
+.vscode/
+*.code-workspace
+
+# Vim / Neovim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+\#*\#
+.\#*
+
+# JetBrains (CLion, PyCharm, etc.)
+.idea/
+*.iml
+
+# Nano backup files
+*.save
+
+# ── Compiled / temporary files ────────────────────────────────────────────────
+*.tmp
+*.bak
+*.orig
+*.log.bak
+
+# ── Shell script test artifacts ───────────────────────────────────────────────
+*.out
