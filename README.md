@@ -1,6 +1,6 @@
 # riscv-log-analyzer
 MEDS Module 1 Grand Assignment
-Student: Abdullah Rasheed — Summer Training 2026
+Student: Abdullah Rasheed — Training 2026
 
 ## What it does
 Reads RISC-V simulation log files using bash scripts.
@@ -23,36 +23,35 @@ make report
 make clean
 
 ## Scripts
-- analyze.sh          reads log file, counts results, prints report
-- setup_env.sh        checks if bash/grep/awk/sed/git/make are installed
-- generate_report.sh  runs analyzer on all logs in test_data/
+- analyze.sh — reads log file, counts results, prints report
+- setup_env.sh — checks if bash/grep/awk/sed/git/make are installed
+- generate_report.sh — runs analyzer on all logs in test_data/
 
 ## Makefile
-make all     # analyze all logs
-make test    # run test suite
-make report  # save report to output/
-make clean   # delete output files
-make setup   # check tools and files
-make help    # show all targets
+- make all — analyze all logs
+- make test — run test suite
+- make report — save report to output/
+- make clean — delete output files
+- make setup — check tools and files
+- make help — show all targets
+
+## Project Files
+- Makefile
+- README.md
+- .gitignore
+- scripts/analyze.sh
+- scripts/setup_env.sh
+- scripts/generate_report.sh
+- test_data/sample_sim.log
+- test_data/sample_pass.log
+- test_data/sample_fail.log
+- output/
+- docs/USAGE.md
 
 ## Git workflow
 - 4 feature branches created and merged into main
 - 1 merge conflict created intentionally and resolved
 - pushed to GitHub from WSL terminal
 
-## Project Structure
-riscv-log-analyzer/
-├── Makefile
-├── README.md
-├── .gitignore
-├── scripts/
-│   ├── analyze.sh
-│   ├── setup_env.sh
-│   └── generate_report.sh
-├── test_data/
-│   ├── sample_sim.log
-│   ├── sample_pass.log
-│   └── sample_fail.log
-├── output/
-└── docs/
-    └── USAGE.md
+## Author
+Abdullah Rasheed — MEDS Lab Training 2026
