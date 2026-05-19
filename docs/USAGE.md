@@ -1,123 +1,40 @@
-# USAGE — riscv-log-analyzer
+# USAGE Guide — riscv-log-analyzer
 
-Detailed command reference for all scripts and Makefile targets.
+## Main Script
+bash scripts/analyze.sh <logfile> [options]
 
----
+Options:
+  --format text     plain text output (default)
+  --format csv      csv output
+  --output <path>   save to file instead of terminal
+  --verbose         show extra details while running
+  --help            show usage
 
-## analyze.sh
-
-The main script. Parses a single RISC-V simulation log file.
-
-### Synopsis
-
-```
-bash scripts/analyze.sh <logfile> [--format text|csv] [--output <path>]
-                         [--verbose] [--help]
-```
-
-### Arguments
-
-| Argument          | Required | Description                                   |
-|-------------------|----------|-----------------------------------------------|
-| `<logfile>`       | Yes      | Path to the `.log` file to analyze            |
-| `--format`        | No       | Output format: `text` (default) or `csv`      |
-| `--output <path>` | No       | Write output to this file instead of stdout   |
-| `--verbose`       | No       | Print debug/progress messages to stderr       |
-| `--help`          | No       | Print usage info and exit                     |
-
-### Examples
-
-```bash
-# Basic usage — text output to terminal
+## Examples
 bash scripts/analyze.sh test_data/sample_sim.log
-
-# Save text report to a file
+bash scripts/analyze.sh test_data/sample_fail.log --verbose
+bash scripts/analyze.sh test_data/sample_sim.log --format csv
 bash scripts/analyze.sh test_data/sample_sim.log --output output/report.txt
 
-# Generate CSV output and save it
-bash scripts/analyze.sh test_data/sample_sim.log --format csv --output output/report.csv
+## Other Scripts
+bash scripts/setup_env.sh       # check tools installed
+bash scripts/generate_report.sh # run analyzer on all logs
 
-# Verbose mode (shows parsing progress on stderr)
-bash scripts/analyze.sh test_data/sample_fail.log --verbose
+## Makefile
+make setup    # check tools
+make all      # analyze all logs
+make test     # run test suite
+make report   # save report to output/
+make clean    # delete output files
+make help     # show all targets
 
-# Show help
-bash scripts/analyze.sh --help
-```
+## Log Format Expected
+[2026-05-01 10:23:45] TEST START: rv32i-add
+[2026-05-01 10:23:46] TEST PASS: rv32i-add (0.82s)
+[2026-05-01 10:23:48] TEST FAIL: rv32i-sll (1.02s)
+[2026-05-01 10:23:48] TEST SKIP: rv32i-srl (not supported)
 
-### Exit Codes
-
-| Code | Meaning                                  |
-|------|------------------------------------------|
-| `0`  | Log analyzed; all tests passed           |
-| `1`  | Log analyzed; one or more tests failed   |
-| `2`  | Bad usage (missing file, invalid flag)   |
-
----
-
-## setup_env.sh
-
-Checks that all required tools (`bash`, `grep`, `awk`, `sed`, `make`, `git`,
-etc.) are installed, and verifies the project directory structure.
-
-```bash
-bash scripts/setup_env.sh
-# or via Make:
-make setup
-```
-
----
-
-## generate_report.sh
-
-Runs `analyze.sh` on **every** `.log` file inside `test_data/` and writes
-a combined report to `output/summary_report.txt`.
-
-```bash
-bash scripts/generate_report.sh
-# or via Make:
-make report
-```
-
----
-
-## Makefile Targets
-
-```
-make all      — Analyze all test logs, print results to stdout
-make test     — Automated test suite (verifies exit codes & file creation)
-make report   — Run generate_report.sh; saves to output/summary_report.txt
-make clean    — Delete all files inside output/
-make setup    — Run setup_env.sh to check tools and structure
-make help     — Print all available Makefile targets with descriptions
-```
-
----
-
-## Log File Format
-
-The analyzer expects log files in this format:
-
-```
-[YYYY-MM-DD HH:MM:SS] TEST START: <test-name>
-[YYYY-MM-DD HH:MM:SS] TEST PASS: <test-name> (<time>s)
-[YYYY-MM-DD HH:MM:SS] TEST FAIL: <test-name> (<time>s)
-[YYYY-MM-DD HH:MM:SS] TEST SKIP: <test-name> (<reason>)
-[YYYY-MM-DD HH:MM:SS] ERROR: <error message>
-[YYYY-MM-DD HH:MM:SS] SUMMARY: N tests, N passed, N failed, N skipped
-```
-
-Timing information in parentheses (e.g. `(0.82s)`) is optional — if absent,
-the Timing Statistics section is omitted from the report.
-
----
-
-## CSV Output Format
-
-When `--format csv` is used, a single-row CSV is produced:
-
-```
-log_file, analysis_date, total_tests, passed, failed, skipped,
-pass_rate, fail_rate, skip_rate, min_time, max_time, avg_time, failed_tests
-```
-
-Failed test names in the last column are separated by semicolons.
+## Exit Codes
+0 = all tests passed
+1 = some tests failed
+2 = wrong usage or file not found
