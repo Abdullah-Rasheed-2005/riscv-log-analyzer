@@ -1,0 +1,29 @@
+[2026-05-03 08:00:01] TEST START: rv32i-add
+[2026-05-03 08:00:02] TEST PASS: rv32i-add (0.80s)
+[2026-05-03 08:00:02] TEST START: rv32i-sub
+[2026-05-03 08:00:03] TEST FAIL: rv32i-sub (1.20s)
+[2026-05-03 08:00:03] ERROR: ALU output mismatch expected=0x0005 got=0x0004
+[2026-05-03 08:00:03] TEST START: rv32i-sll
+[2026-05-03 08:00:04] TEST FAIL: rv32i-sll (1.02s)
+[2026-05-03 08:00:04] ERROR: Signature mismatch at line 42
+[2026-05-03 08:00:04] TEST START: rv32i-srl
+[2026-05-03 08:00:05] TEST SKIP: rv32i-srl (not supported)
+[2026-05-03 08:00:05] TEST START: rv32i-and
+[2026-05-03 08:00:06] TEST PASS: rv32i-and (0.55s)
+[2026-05-03 08:00:06] TEST START: rv32i-or
+[2026-05-03 08:00:07] TEST PASS: rv32i-or (0.60s)
+[2026-05-03 08:00:07] TEST START: rv32i-xor
+[2026-05-03 08:00:08] TEST FAIL: rv32i-xor (0.99s)
+[2026-05-03 08:00:08] ERROR: XOR gate logic failure
+[2026-05-03 08:00:08] TEST START: rv32i-lui
+[2026-05-03 08:00:09] TEST PASS: rv32i-lui (0.75s)
+[2026-05-03 08:00:09] TEST START: rv32i-beq
+[2026-05-03 08:00:10] TEST FAIL: rv32i-beq (1.15s)
+[2026-05-03 08:00:10] ERROR: Branch target mismatch
+[2026-05-03 08:00:10] TEST START: rv32i-bne
+[2026-05-03 08:00:11] TEST PASS: rv32i-bne (0.95s)
+[2026-05-03 08:00:11] TEST START: rv32i-lw
+[2026-05-03 08:00:12] TEST PASS: rv32i-lw (1.10s)
+[2026-05-03 08:00:12] TEST START: rv32i-mul
+[2026-05-03 08:00:14] TEST PASS: rv32i-mul (2.31s)
+[2026-05-03 08:30:00] SUMMARY: 12 tests, 6 passed, 4 failed, 1 skipped (not counted in totals)
